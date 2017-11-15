@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Komodo Project File - DO NOT EDIT -->
+<project id="a231d1ea-1c2c-4547-8cdb-b7981ecab0a1" kpf_version="4" name="mirweb.kpf">
+<file id="534a2139-52c2-4606-89b9-8a18137d4250" idref="24ee0b42-bc1b-410b-afee-f34eca617bda" name="mir_detail.tt2" url="root/src/search/mir_detail.tt2">
+</file>
+<preference-set idref="a231d1ea-1c2c-4547-8cdb-b7981ecab0a1/script/mirweb_server.pl">
+  <string id="lastInvocation">default</string>
+<preference-set id="Invocations">
+<preference-set id="default">
+  <string id="postparams"></string>
+  <string id="language">Perl</string>
+  <string id="getparams"></string>
+  <boolean id="show-dialog">1</boolean>
+  <boolean id="use-console">0</boolean>
+  <string id="warnings">enabled</string>
+  <string id="mpostparams"></string>
+  <string relative="path" id="filename">script/mirweb_server.pl</string>
+  <string id="request-method">GET</string>
+  <long id="debugger.io-port">9011</long>
+  <string id="params"></string>
+  <string id="userCGIEnvironment"></string>
+  <string id="posttype">application/x-www-form-urlencoded</string>
+  <string id="documentRoot"></string>
+  <string id="cookieparams"></string>
+  <string id="userEnvironment"></string>
+  <boolean id="sim-cgi">0</boolean>
+  <string id="cwd"></string>
+  <string id="executable-params"></string>
+</preference-set>
+</preference-set>
+</preference-set>
+<preference-set idref="a231d1ea-1c2c-4547-8cdb-b7981ecab0a1">
+  <boolean id="import_live">1</boolean>
+</preference-set>
+<preference-set idref="a231d1ea-1c2c-4547-8cdb-b7981ecab0a1/lib/mirweb/Controller/search.pm">
+  <string id="lastInvocation">default</string>
+<preference-set id="Invocations">
+<preference-set id="default">
+  <string id="postparams"></string>
+  <string id="language">Perl</string>
+  <string id="getparams"></string>
+  <boolean id="show-dialog">1</boolean>
+  <boolean id="use-console">0</boolean>
+  <string id="warnings">enabled</string>
+  <string id="mpostparams"></string>
+  <string relative="path" id="filename">lib/mirweb/Controller/search.pm</string>
+  <string id="request-method">GET</string>
+  <long id="debugger.io-port">9011</long>
+  <string id="params"></string>
+  <string id="userCGIEnvironment"></string>
+  <string id="posttype">application/x-www-form-urlencoded</string>
+  <string id="documentRoot"></string>
+  <string id="cookieparams"></string>
+  <string id="userEnvironment"></string>
+  <boolean id="sim-cgi">0</boolean>
+  <string id="cwd"></string>
+  <string id="executable-params"></string>
+</preference-set>
+</preference-set>
+</preference-set>
+</project>

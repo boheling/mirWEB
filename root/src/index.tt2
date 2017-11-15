@@ -1,0 +1,11 @@
+[% META title = "Welcome to the micro RNA database" %]
+<p><b>Here you will find All the miRNAs up to date.</b></p>
+<p><b>From here, you can:</b>
+<ul>
+<a href="[% Catalyst.uri_for('/search') %]">Search a new miRNA with keyword</a><p>
+<a href="[% Catalyst.uri_for('/mir/list') %]">Look at all miRNAs</a><p>
+<a href="[% Catalyst.uri_for('/search/advanced_search') %]">Advanced search</a><p>
+
+
+</ul>
+</p>

@@ -1,0 +1,6 @@
+#[% i = 0 %]
+#[% length = hairpin.hairpin_seq.length %]
+#<td>[% WHILE i<length / 60 %]
+#[% hairpin.hairpin_seq.substr(i * 60, 60) %] 
+#[% i = i+1 %]
+#[% END %]</td>

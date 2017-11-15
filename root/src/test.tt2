@@ -1,0 +1,4 @@
+[% META title = "Coloumns:" %]
+[% FOREACH t IN test %]
+[% t %]
+[% END %]

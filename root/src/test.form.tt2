@@ -1,0 +1,19 @@
+[% META title = "Search miRNAs:" %]     
+[% formbuilder.start -%]
+[% FOREACH field IN formbuilder.fields -%]
+<td><label>
+    <span [% IF field.required %]class="required"[%END%]>[% field.label %]</span>
+</label>
+[% field.field %]</td>
+[% IF field.label == 'Database Select :' %]
+<br><br><table border="0" cellspacing="0"><tr><td></td>
+[% END %]
+[% IF field.label == 'In field :' %]
+<tr>
+[% END %]
+[% END %]</table><br>
+[% formbuilder.submit %]&nbsp;&nbsp;[% formbuilder.reset %]
+[% formbuilder.end -%]
+Navigation:
+&lt;&lt;
+<a href="[% Catalyst.uri_for('/') %]">Go home</a> &gt;&gt;
