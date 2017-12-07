@@ -1,0 +1,34 @@
+[% META title = "miRNA detail info" %]
+<h2>Detail information of "[% mir.mir_mirbase_id | html %]"</h2>
+<b>Database_ID : </b><br>
+[% mir.mir_mirbase_id | html %]<br>
+<b>Accession : </b><br>
+[% mir.mir_accession | html %]<br>
+<b>Species : </b><br>
+[% mir.mir_species | html %]<br>
+<b>Description : </b><br>
+[% mir.mir_description | html %]<br>
+<b>Length : </b><br>
+[% uniqmir.uniqmir_length | html %]<br>
+<b>Sequence : </b><br>
+[% i = 0 %]
+[% WHILE i < uniqmir.uniqmir_length / 60 %]
+[% uniqmir.uniqmir_seq.substr(i * 60, 60) %] 
+[% i = i + 1 %]
+[% END %]
+<br>
+<b>Fasta format : </b></br>
+<table border="1" cellspacing="0"><tr><td>
+>[% mir.mir_mirbase_id %]&nbsp;
+ [% mir.mir_accession %]&nbsp;
+ [% mir.mir_description %]<br>
+ [% i = 0 %]
+ [% WHILE i < uniqmir.uniqmir_length / 60 %]
+ [% uniqmir.uniqmir_seq.substr(i * 60, 60) %] 
+ [% i = i + 1 %]
+ [% END %]</td></tr></table>
+Navigation:
+&lt;&lt;
+<a href="[% Catalyst.uri_for('/') %]">Go home</a>
+|
+<a href="[% Catalyst.uri_for('/search') %]">Search again>></a>

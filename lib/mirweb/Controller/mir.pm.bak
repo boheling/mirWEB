@@ -1,0 +1,76 @@
+package mirweb::Controller::mir;
+
+use strict;
+use warnings;
+use base qw(Catalyst::Controller::FormBuilder Catalyst::Controller::BindLex);
+
+sub list : Local {
+    my ( $self, $c ) = @_;
+    my $mirs : Stashed = $c->model('mirDB::Mir');
+    $c->stash->{template} = 'mir/list.tt2';
+}
+
+sub search_kw : Global Form('/search/search') {
+    my ( $self, $c, $query ) = @_;
+    my $form = $self->formbuilder;
+    $c->stash->{template} = 'search/search.tt2';
+    $form->field(
+        name  => 'mir_id',
+        label => 'Search Keyword',
+        value => '',
+    );
+    $form->field(
+        name  => 'search_type',
+        options => ['Mature miRNA','Stem-loop sequence']
+    );
+    
+    $c->stash->{form} = $form;
+    $query ||= $form->field('mir_id')
+        if ( $form->submitted && $form->validate );
+    return unless $query;    # no query? we're done
+    $c->stash->{query} = $query;
+    my @tokens = split /\s+/, $query;
+    my $result : Stashed;
+    if('Mature miRNA' eq $form->field('search_type')){
+        $result = $c->forward( 'search_mirs', \@tokens );
+        $c->stash->{'template'} = 'search/mir_results.tt2';
+    }else{
+        $result = $c->forward( 'search_hairpins', \@tokens );
+        $c->stash->{'template'} = 'search/hairpin_results.tt2';
+    }
+
+    my $page = $c->request->param('page');
+    $page = 1 if ( $page !~ /^\d+$/ );
+    $result = $result->page($page);
+    my $pager : Stashed = $result->pager;
+}
+
+sub search_mirs : Private {
+    my ( $self, $c, @tokens ) = @_;
+    my @mir_fields =
+    qw/mir_id uniqmir_id mir_species mir_mirbase_id mir_accession/;
+    @mir_fields = cross( \@mir_fields, \@tokens );
+    return $c->model('mirDB::mir')->search( \@mir_fields );
+}
+
+sub search_hairpins : Private {
+    my ( $self, $c, @tokens ) = @_;
+    my @hairpin_fields =
+    qw/hairpin_id hairpin_mirbase_id hairpin_species hairpin_accession hairpin_seq/;
+    @hairpin_fields = cross( \@hairpin_fields, \@tokens );
+    return $c->model('mirDB::hairpin')->search( \@hairpin_fields );
+}
+
+sub cross {
+    my $columns = shift || [];
+    my $tokens  = shift || [];
+    map {s/%/\\%/g} @$tokens;
+    my @result;
+    foreach my $column (@$columns) {
+        push @result, ( map +{ $column => { -like => "%$_%" } }, @$tokens );
+    }
+    return @result;
+}
+
+1;    # End the module with a true value!
+

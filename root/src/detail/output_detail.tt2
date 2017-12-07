@@ -1,0 +1,65 @@
+[% IF datatype == 'Mature miRNA' %]
+[% mirbase_id = mir.mir_mirbase_id%]
+[% accession =mir.mir_accession %]
+[% species = mir.mir_species %]
+[% description = mir.mir_description %]
+[% length = uniqmir.uniqmir_length %]
+[% sequence = uniqmir.uniqmir_seq %]
+[% relatedtype = 'Stem-loop sequence' %]
+[% urlroot = 'hairpins' %]
+[% related = hairpin.hairpin_mirbase_id %]
+[% ELSE %]
+[% mirbase_id = hairpin.hairpin_mirbase_id%]
+[% accession = hairpin.hairpin_accession %]
+[% species = hairpin.hairpin_species %]
+[% description = hairpin.hairpin_description %]
+[% length = hairpin.hairpin_length %]
+[% sequence = hairpin.hairpin_seq %]
+[% relatedtype = 'Mature miRNA' %]
+[% urlroot = 'mirs' %]
+[% related = mir.mir_mirbase_id %]
+[% END %]
+
+[% META title = "Detail info" %]
+<h2>Detail information of "[% mirbase_id %]"</h2>
+<b>Database_ID : </b><br>
+[% mirbase_id %]<br>
+<b>Accession : </b><br>
+[% accession %]<br>
+<b>Species : </b><br>
+[% species %]<br>
+<b>Description : </b><br>
+[% description %]<br>
+<b>Length : </b><br>
+[% length %]<br>
+<b>Sequence : </b><br>
+[% i = 0 %]
+[% WHILE i < length / 60 %]
+[% sequence.substr(i * 60, 60) %] <br>
+[% i = i + 1 %]
+[% END %]
+<br>
+<b>Fasta format : </b></br>
+<table border="1" cellspacing="0"><tr><td>
+>
+[% mirbase_id %]&nbsp;
+[% accession %]&nbsp;
+[% description %]<br>
+[% i = 0 %]
+[% WHILE i < length / 60 %]
+[% sequence.substr(i * 60, 60) %] <br>
+[% i = i + 1 %]
+[% END %]</td></tr></table>
+<br>
+Related [% relatedtype %] : <a href=
+  "[% Catalyst.uri_for("/detail/$urlroot/$related") | html %]">
+  [% related %]</a>
+<br><br>
+More information on miRBase :
+<a href= "[% "http://microrna.sanger.ac.uk/cgi-bin/sequences/mirna_entry.pl?acc=$hairpin.hairpin_accession" | html %]">
+[% hairpin.hairpin_accession %]</a><br><br>
+Navigation:
+&lt;&lt;
+<a href="[% Catalyst.uri_for('/') %]">Go home</a>
+|
+<a href="[% Catalyst.uri_for('/search') %]">Search again>></a>

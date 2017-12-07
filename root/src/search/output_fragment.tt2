@@ -1,0 +1,35 @@
+[% IF search_type == 'Mature miRNA' %]
+[% mirbase_id = output.mir_mirbase_id%]
+[% accession = output.mir_accession %]
+[% species = output.mir_species %]
+[% description = output.mir_description %]
+[% detaildir = 'mirs' %]
+[% ELSE %]
+[% mirbase_id = output.hairpin_mirbase_id%]
+[% accession =output.hairpin_accession %]
+[% species = output.hairpin_species %]
+[% description = output.hairpin_description %]
+[% detaildir = 'hairpins' %]
+[% END %]
+[% colored_mirbase_id = mirbase_id %]
+[% colored_accession = accession %]
+[% FOREACH re IN replace %]
+[% colored_mirbase_id = colored_mirbase_id.replace( re.key, re.value ) %]
+[% colored_accession = colored_accession.replace( re.key, re.value ) %]
+[% species = species.replace( re.key, re.value ) %]
+[% description = description.replace( re.key, re.value ) %]
+[% END %]
+<td><a href=
+  "[% Catalyst.uri_for("/detail/$detaildir/$mirbase_id") | html %]">
+  [% colored_mirbase_id %]</a></td>
+[% IF search_type == 'Mature miRNA' %]
+<td>[% colored_accession %]&nbsp;&nbsp;&nbsp;&nbsp;</td>
+[% ELSE %]
+<td><a href=
+  "[% "http://microrna.sanger.ac.uk/cgi-bin/sequences/mirna_entry.pl?acc=$accession" | html %]">
+   [% colored_accession %]</a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+[% END %]
+<td>[% species %]</td>
+<td>[% description %]&nbsp;&nbsp;&nbsp;&nbsp;</td>
+
+

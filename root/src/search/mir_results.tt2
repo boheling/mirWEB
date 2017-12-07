@@ -1,0 +1,17 @@
+[% META title = "Search results" %]
+[% WRAPPER "search/results_wrapper.tt2" %]
+<table border="1" cellspacing="0"><tr>
+<td><b>ID</b>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><b>Database_ID</b>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><b>Accession</b>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><b>Species</b>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><b>Description</b>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+[% i = 1 %]
+[% WHILE (mir = result.next) %]
+<tr><td>[% i %]</td>[% INCLUDE search/mir_fragment.tt2 %]</tr>
+[% i = i+1 %]
+[% END %]
+</table>
+[% END %]
+

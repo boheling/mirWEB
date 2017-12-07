@@ -1,0 +1,34 @@
+[% META title = "Hairpin detail info" %]
+<h2>Detail information of "[% hairpin.hairpin_mirbase_id | html %]"</h2>
+<b>Database_ID : </b><br>
+[% hairpin.hairpin_mirbase_id | html %]<br>
+<b>Accession : </b><br>
+[% hairpin.hairpin_accession | html %]<br>
+<b>Species : </b><br>
+[% hairpin.hairpin_species | html %]<br>
+<b>Description : </b><br>
+[% hairpin.hairpin_description | html %]<br>
+<b>Length : </b><br>
+[% hairpin.hairpin_length | html %]<br>
+<b>Sequence : </b><br>
+[% i = 0 %]
+[% WHILE i < hairpin.hairpin_length / 60 %]
+[% hairpin.hairpin_seq.substr(i * 60, 60) %] <br>
+[% i = i + 1 %]
+[% END %]
+<br>
+<b>Fasta format : </b></br>
+<table border="1" cellspacing="0"><tr><td>
+>[% hairpin.hairpin_mirbase_id %]&nbsp;
+ [% hairpin.hairpin_accession %]&nbsp;
+ [% hairpin.hairpin_description %]<br>
+ [% i = 0 %]
+ [% WHILE i < hairpin.hairpin_length / 60 %]
+ [% hairpin.hairpin_seq.substr(i * 60, 60) %] <br>
+ [% i = i + 1 %]
+ [% END %]</td></tr></table>
+Navigation:
+&lt;&lt;
+<a href="[% Catalyst.uri_for('/') %]">Go home</a>
+|
+<a href="[% Catalyst.uri_for('/search') %]">Search again>></a>

@@ -1,0 +1,18 @@
+[% mirbase_id = mir.mir_mirbase_id%]
+[% accession = mir.mir_accession %]
+[% species = mir.mir_species %]
+[% description = mir.mir_description %]
+[% FOREACH re IN replace %]
+[% mirbase_id = mirbase_id.replace( re.key, re.value ) %]
+[% accession = accession.replace( re.key, re.value ) %]
+[% species = species.replace( re.key, re.value ) %]
+[% description = description.replace( re.key, re.value ) %]
+[% END %]
+
+<td><a href=
+  "[% Catalyst.uri_for("/detail/mirs/$mir.mir_mirbase_id") | html %]">
+  [% mirbase_id %]</a></td>
+<td>[% accession %]&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>[% species %]</td>
+<td>[% description %]&nbsp;&nbsp;&nbsp;&nbsp;</td>
+

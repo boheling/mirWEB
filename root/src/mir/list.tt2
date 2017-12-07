@@ -1,0 +1,26 @@
+[% META title = 'Micro RNA' %]
+<div>
+<a href=  "[% Catalyst.uri_for("/") | html %]">
+  go home</a>
+[% IF mirs.count > 0 %]
+ <h2>Here are all [% mirs.count %] miRNAs:</h2>
+ <table>
+ [% SET counter = [1..7] %]
+ [% WHILE (mir = mirs.next) %]
+  <tr>
+  <td><b>[% mir.mir_id | html %]</b> <a href=
+  "[% Catalyst.uri_for("/mir/edit/$mir.mir_id") | html %]">
+  [% mir.mir_mirbase_id | html %]</a></td>
+  [% FOREACH counter %]
+   [% IF (mir = mirs.next) %]
+    <td><b>[% mir.mir_id | html %]</b> <a href=
+    "[% Catalyst.uri_for("/mir/edit/$mir.mir_id") | html %]">
+    [% mir.mir_mirbase_id | html %]</a></td>
+   [% ELSE %]
+    [% break %]
+   [% END %]
+  [% END %]
+   </tr>
+ [% END %]
+</table>
+[% END %]

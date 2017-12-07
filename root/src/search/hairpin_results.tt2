@@ -1,0 +1,16 @@
+[% META title = "Search results" %]
+[% WRAPPER "search/results_wrapper.tt2" %]
+<table border="1" cellspacing="0"><tr>
+<td><b> ID&nbsp;&nbsp;&nbsp;&nbsp;</b></td>
+<td><b> Database_ID&nbsp;&nbsp;&nbsp;&nbsp;</b></td>
+<td><b> Accession&nbsp;&nbsp;&nbsp;&nbsp;</b></td>
+<td><b> Species&nbsp;&nbsp;&nbsp;&nbsp;</b></td>
+<td><b> Description&nbsp;&nbsp;&nbsp;&nbsp;</b></td>
+[% i = 1 %]
+<tr>
+[% WHILE (hairpin = result.next) %]
+<tr><td>[% i %]</td>[% INCLUDE search/hairpin_fragment.tt2 %]</tr>
+[% i = i+1 %]
+[% END %]
+</table>
+[% END %]

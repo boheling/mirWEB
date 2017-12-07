@@ -1,0 +1,5 @@
+[% META title = "Search miRNAs:" %]
+[% form.render %]
+Navigation:
+&lt;&lt;
+<a href="[% Catalyst.uri_for('/') %]">Go home</a> &gt;&gt;
